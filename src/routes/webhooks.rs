@@ -19,11 +19,11 @@ use crate::{
 /// Receives and processes Paystack webhook events.
 ///
 /// Security checklist:
-///   ✅ Signature verified with HMAC-SHA512 before any processing
-///   ✅ Raw bytes used for verification (before any parsing)
-///   ✅ Idempotency: duplicate events are silently skipped via DB unique constraint
-///   ✅ Returns 200 immediately after validation to prevent Paystack retries
-///   ✅ Heavy work spawned onto a background task
+///   - Signature verified with HMAC-SHA512 before any processing
+///   - Raw bytes used for verification (before any parsing)
+///   - Idempotency: duplicate events are silently skipped via DB unique constraint
+///   - Returns 200 immediately after validation to prevent Paystack retries
+///   - Heavy work spawned onto a background task
 pub async fn handle_paystack_webhook(
     State(state): State<AppState>,
     headers: HeaderMap,
